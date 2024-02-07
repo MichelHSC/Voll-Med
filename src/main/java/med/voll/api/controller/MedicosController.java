@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/medicos")
 public class MedicosController {
 
-    private  MedicoRepository repository;
+    private MedicoRepository repository;
 
     @Autowired  // Adiciona esta anotação para injetar o MedicoRepository automaticamente
     public MedicosController(MedicoRepository repository) {
@@ -25,22 +25,29 @@ public class MedicosController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody @Valid DadosCadastroMedico dados){
+    public void cadastrar(@RequestBody @Valid DadosCadastroMedico dados) {
         repository.save(new Medico(dados));
 
     }
 
     @GetMapping
-    public Page<DadosListagemMedico> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
-        return repository.findAll(paginacao).map(DadosListagemMedico::new);
+    public Page<DadosListagemMedico> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
     }
 
     @PutMapping
     @Transactional
-    public void Atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
-    var medico = repository.getReferenceById(dados.id());
-    medico.atualizarInformacoes(dados);
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
+        var medico = repository.getReferenceById(dados.id());
+        medico.atualizarInformacoes(dados);
 
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id) {
+        var medico = repository.getReferenceById(id);
+        medico.excluir();
     }
 
 
