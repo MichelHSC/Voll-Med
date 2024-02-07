@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
 
-    @GetMapping
+    @GetMapping("/medicos")
     public String olaMundo() {
         return "Hello World Spring";
     }
