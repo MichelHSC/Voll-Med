@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import med.voll.endereco.DadosEndereco;
-import org.springframework.validation.annotation.Validated;
 
 public record DadosCadastroMedico(
         @NotBlank
