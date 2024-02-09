@@ -1,7 +1,7 @@
 package med.voll.api.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.domain.consulta.DadosAgendamento;
+import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
 import med.voll.api.domain.consulta.DadosDetalhamentoConsulta;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,7 @@ public class ConsultaController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity agendar (@RequestBody @Valid DadosAgendamento dados){
+    public ResponseEntity agendar (@RequestBody @Valid DadosAgendamentoConsulta dados){
         System.out.println(dados);
         return ResponseEntity.ok(new DadosDetalhamentoConsulta(null,null,null,null));
     }
