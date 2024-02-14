@@ -33,6 +33,6 @@ public class Consulta {
     private LocalDateTime data;
 
 
-    public Consulta(Long id, Medico medico, Paciente paciente, LocalDateTime data) {
+    public Consulta(Object o, Medico medico, Paciente paciente, LocalDateTime data) {
     }
 }
